@@ -1,0 +1,344 @@
+[
+    {
+        "cad_num": "22:63:010408:520",
+        "section": "object_characteristics",
+        "reestr_api_order_id": "89a192d008884ceeb08c356b81390f0c",
+        "data": {
+            "parse_type": "EXTRACT_ABOUT_PROPERTY_ROOM",
+            "request_date": "21.04.2025",
+            "cn": "22:63:010408:520",
+            "old_number": null,
+            "address": "Российская Федерация, край Алтайский, г. Барнаул, ул Шукшина д. 2, кв. 277",
+            "m2": "60.6 м²",
+            "purpose": "Жилое",
+            "object": "Помещение",
+            "obj_type": "Квартира",
+            "obj_name": "Квартира",
+            "floor": "Этаж № 09",
+            "cost": "4208810.59",
+            "parent_cn": "22:63:010408:46",
+            "land_cn": null,
+            "room_cn": null,
+            "included_cn": null,
+            "ascendant_cn": null,
+            "descendant_cn": null,
+            "right": [
+                {
+                    "owner": "Физическое лицо",
+                    "right_type": "Общая долевая собственность",
+                    "shares": "7\/20",
+                    "right_number": "22-22-01\/192\/2014-305",
+                    "reg_date": "21.10.2014",
+                    "documents_right_start": null,
+                    "documents_right_end": null,
+                    "right_end_reg_date": null,
+                    "restriction": null
+                },
+                {
+                    "owner": "Физическое лицо",
+                    "right_type": "Общая долевая собственность",
+                    "shares": "1\/4",
+                    "right_number": "22-22-01\/192\/2014-305",
+                    "reg_date": "21.10.2014",
+                    "documents_right_start": null,
+                    "documents_right_end": null,
+                    "right_end_reg_date": null,
+                    "restriction": null
+                },
+                {
+                    "owner": "Физическое лицо",
+                    "right_type": "Общая долевая собственность",
+                    "shares": "1\/5",
+                    "right_number": "22-22-01\/010\/2006-172",
+                    "reg_date": "15.02.2006",
+                    "documents_right_start": null,
+                    "documents_right_end": null,
+                    "right_end_reg_date": null,
+                    "restriction": null
+                },
+                {
+                    "owner": "Физическое лицо",
+                    "right_type": "Общая долевая собственность",
+                    "shares": "1\/5",
+                    "right_number": "22-22-01\/010\/2006-172",
+                    "reg_date": "15.02.2006",
+                    "documents_right_start": null,
+                    "documents_right_end": null,
+                    "right_end_reg_date": null,
+                    "restriction": null
+                }
+            ],
+            "claim_records": [
+                "Представлены документы на государственную регистрацию, где вид регистрационного действия: "
+            ]
+        }
+    },
+    {
+        "cad_num": "22:69:030213:219",
+        "section": "object_characteristics",
+        "reestr_api_order_id": "6717356a456f4d80b13aad58e1570062",
+        "data": {
+            "parse_type": "EXTRACT_ABOUT_PROPERTY_ROOM",
+            "request_date": "23.04.2025",
+            "cn": "22:69:030213:219",
+            "old_number": "Кадастровый номер 22:69:030214:0000:008\/338А:0007А; Условный номер 22:69:030214:0000:008\/338",
+            "address": "Алтайский край, г. Новоалтайск, ул. Ударника, д. 14, кв. 7",
+            "m2": "64.3 м²",
+            "purpose": "Жилое",
+            "object": "Помещение",
+            "obj_type": "Квартира",
+            "obj_name": "Квартира",
+            "floor": "Этаж № 02",
+            "cost": "2372684.15",
+            "parent_cn": "22:69:030213:56",
+            "land_cn": null,
+            "room_cn": null,
+            "included_cn": null,
+            "ascendant_cn": null,
+            "descendant_cn": null,
+            "right": [
+                {
+                    "owner": "Физическое лицо",
+                    "right_type": "Общая долевая собственность",
+                    "shares": "1\/4",
+                    "right_number": "22-22-14\/018\/2006-277",
+                    "reg_date": "21.07.2006",
+                    "documents_right_start": null,
+                    "documents_right_end": null,
+                    "right_end_reg_date": null,
+                    "restriction": null
+                },
+                {
+                    "owner": "Физическое лицо",
+                    "right_type": "Общая долевая собственность",
+                    "shares": "1\/4",
+                    "right_number": "22-22-14\/018\/2006-277",
+                    "reg_date": "21.07.2006",
+                    "documents_right_start": null,
+                    "documents_right_end": null,
+                    "right_end_reg_date": null,
+                    "restriction": null
+                },
+                {
+                    "owner": "Физическое лицо",
+                    "right_type": "Общая долевая собственность",
+                    "shares": "1\/4",
+                    "right_number": "22-22-14\/018\/2006-277",
+                    "reg_date": "21.07.2006",
+                    "documents_right_start": null,
+                    "documents_right_end": null,
+                    "right_end_reg_date": null,
+                    "restriction": null
+                },
+                {
+                    "owner": "Физическое лицо",
+                    "right_type": "Общая долевая собственность",
+                    "shares": "1\/4",
+                    "right_number": "22-22-14\/018\/2006-277",
+                    "reg_date": "21.07.2006",
+                    "documents_right_start": null,
+                    "documents_right_end": null,
+                    "right_end_reg_date": null,
+                    "restriction": null
+                }
+            ],
+            "claim_records": null
+        }
+    },
+    {
+        "cad_num": "22:69:030213:219",
+        "section": "ownership_history",
+        "reestr_api_order_id": "7e7bc5722bab403cb433517e45a1717c",
+        "data": {
+            "parse_type": "EXTRACT_TRANSFER_RIGHTS_PROPERTY",
+            "request_date": "23.04.2025",
+            "object": "Помещение",
+            "cn": "22:69:030213:219",
+            "address": "Алтайский край, г. Новоалтайск, ул. Ударника, д. 14, кв. 7",
+            "right": [
+                {
+                    "owner": "Физическое лицо",
+                    "right_type": "Собственность",
+                    "right_number": "22-22-14\/033\/2005-467",
+                    "reg_date": "11.01.2006",
+                    "documents_right_start": [
+                        "Договор на передачу жилого помещения в собственность граждан"
+                    ],
+                    "documents_right_end": null,
+                    "right_end_reg_date": "21.07.2006"
+                },
+                {
+                    "owner": "Физическое лицо",
+                    "right_type": "Общая долевая собственность",
+                    "shares": "1\/4",
+                    "right_number": "22-22-14\/018\/2006-277",
+                    "reg_date": "21.07.2006",
+                    "documents_right_start": [
+                        "Договор купли-продажи"
+                    ],
+                    "documents_right_end": null,
+                    "right_end_reg_date": null
+                },
+                {
+                    "owner": "Физическое лицо",
+                    "right_type": "Общая долевая собственность",
+                    "shares": "1\/4",
+                    "right_number": "22-22-14\/018\/2006-277",
+                    "reg_date": "21.07.2006",
+                    "documents_right_start": [
+                        "Договор купли-продажи"
+                    ],
+                    "documents_right_end": null,
+                    "right_end_reg_date": null
+                },
+                {
+                    "owner": "Физическое лицо",
+                    "right_type": "Общая долевая собственность",
+                    "shares": "1\/4",
+                    "right_number": "22-22-14\/018\/2006-277",
+                    "reg_date": "21.07.2006",
+                    "documents_right_start": [
+                        "Договор купли-продажи"
+                    ],
+                    "documents_right_end": null,
+                    "right_end_reg_date": null
+                },
+                {
+                    "owner": "Физическое лицо",
+                    "right_type": "Общая долевая собственность",
+                    "shares": "1\/4",
+                    "right_number": "22-22-14\/018\/2006-277",
+                    "reg_date": "21.07.2006",
+                    "documents_right_start": [
+                        "Договор купли-продажи"
+                    ],
+                    "documents_right_end": null,
+                    "right_end_reg_date": null
+                }
+            ]
+        }
+    },
+    {
+        "cad_num": "22:61:042035:206",
+        "section": "ownership_history",
+        "reestr_api_order_id": "dbf51566d1a44e1ba4cef39f5c2afa67",
+        "data": {
+            "parse_type": "EXTRACT_TRANSFER_RIGHTS_PROPERTY",
+            "request_date": "23.04.2025",
+            "object": "Помещение",
+            "cn": "22:61:042035:206",
+            "address": "Алтайский край, г. Барнаул, ул. Молодежная, д. 47, кв. 33",
+            "right": [
+                {
+                    "owner": "Физическое лицо",
+                    "right_type": "Собственность",
+                    "right_number": "22-22-01\/011\/2014-779",
+                    "reg_date": "03.04.2014",
+                    "documents_right_start": [
+                        "Договор о субдолевом участии в строительстве жилья"
+                    ],
+                    "documents_right_end": [
+                        "Договор купли-продажи, выдан 25.04.2014"
+                    ],
+                    "right_end_reg_date": "05.05.2014"
+                },
+                {
+                    "owner": "Физическое лицо",
+                    "right_type": "Общая долевая собственность",
+                    "shares": "1\/2",
+                    "right_number": "22-22-01\/112\/2014-235",
+                    "reg_date": "05.05.2014",
+                    "documents_right_start": [
+                        "Договор купли-продажи квартиры"
+                    ],
+                    "documents_right_end": [
+                        "Договор дарения, выдан 16.09.2020"
+                    ],
+                    "right_end_reg_date": "21.09.2020"
+                },
+                {
+                    "owner": "Физическое лицо",
+                    "right_type": "Общая долевая собственность",
+                    "shares": "1\/2",
+                    "right_number": "22-22-01\/112\/2014-235",
+                    "reg_date": "05.05.2014",
+                    "documents_right_start": [
+                        "Договор купли-продажи квартиры"
+                    ],
+                    "documents_right_end": [
+                        "Договор дарения, выдан 16.09.2020"
+                    ],
+                    "right_end_reg_date": "21.09.2020"
+                },
+                {
+                    "owner": "Физическое лицо",
+                    "right_type": "Общая долевая собственность",
+                    "shares": "1\/35",
+                    "right_number": "22:61:042035:206-22\/111\/2020-6",
+                    "reg_date": "21.09.2020",
+                    "documents_right_start": [
+                        "Договор"
+                    ],
+                    "documents_right_end": null,
+                    "right_end_reg_date": null
+                },
+                {
+                    "owner": "Физическое лицо",
+                    "right_type": "Общая долевая собственность",
+                    "shares": "1\/35",
+                    "right_number": "22:61:042035:206-22\/111\/2020-4",
+                    "reg_date": "21.09.2020",
+                    "documents_right_start": [
+                        "Договор"
+                    ],
+                    "documents_right_end": null,
+                    "right_end_reg_date": null
+                },
+                {
+                    "owner": "Физическое лицо",
+                    "right_type": "Общая долевая собственность",
+                    "shares": "1\/35",
+                    "right_number": "22:61:042035:206-22\/111\/2020-5",
+                    "reg_date": "21.09.2020",
+                    "documents_right_start": [
+                        "Договор",
+                        "Договор купли-продажи квартиры"
+                    ],
+                    "documents_right_end": [
+                        "Договор дарения, выдан 06.10.2020"
+                    ],
+                    "right_end_reg_date": "08.10.2020"
+                },
+                {
+                    "owner": "Физическое лицо",
+                    "right_type": "Общая долевая собственность",
+                    "shares": "32\/35",
+                    "right_number": "22:61:042035:206-22\/111\/2020-3",
+                    "reg_date": "21.09.2020",
+                    "documents_right_start": [
+                        "Договор",
+                        "Договор купли-продажи квартиры"
+                    ],
+                    "documents_right_end": [
+                        "Договор дарения, выдан 06.10.2020"
+                    ],
+                    "right_end_reg_date": "08.10.2020"
+                },
+                {
+                    "owner": "Физическое лицо",
+                    "right_type": "Общая долевая собственность",
+                    "shares": "33\/35",
+                    "right_number": "22:61:042035:206-22\/111\/2020-9",
+                    "reg_date": "08.10.2020",
+                    "documents_right_start": [
+                        "Договор дарения",
+                        "Договор купли-продажи квартиры",
+                        "Договор"
+                    ],
+                    "documents_right_end": null,
+                    "right_end_reg_date": null
+                }
+            ]
+        }
+    }
+]

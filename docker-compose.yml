@@ -1,0 +1,110 @@
+services:
+    # NGINX
+    test_task_nginx:
+        image: nginx:alpine
+        container_name: test_task
+        ports:
+            - '${DEPLOYMENT_PROXY_PORT:-8000}:80'
+        volumes:
+            - './:/var/www'
+            - './deploy/nginx/local:/etc/nginx/conf.d/'
+            - '${APP_STORAGE_PATH}:/mnt/storage'
+        networks:
+            - test_task
+        depends_on:
+            - test_task_fpm
+
+    # FPM
+    test_task_fpm:
+        build:
+            args:
+                app_mode: development
+                xdebug_enabled: ${XDEBUG_ENABLED:-false}
+            context: ./
+            dockerfile: deploy/fpm/Dockerfile
+        image: test_task
+        container_name: test_task_fpm
+        working_dir: /var/www/
+        volumes:
+            - './:/var/www'
+            - '${APP_STORAGE_PATH}:/mnt/storage'
+        ports:
+            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+        networks:
+            - test_task
+        environment:
+            PHP_IDE_CONFIG: serverName=test_task_fpm
+
+    # PGSQL
+    test_task_pgsql:
+        image: postgres:17
+        container_name: test_task_pgsql
+        volumes:
+            - "test_task_pgsql:/var/lib/postgresql/data"
+            - './deploy/pgsql/create-testing-database.sql:/docker-entrypoint-initdb.d/10-create-testing-database.sql'
+        environment:
+            - POSTGRES_USER=${DB_USERNAME}
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+            - POSTGRES_DB=${DB_DATABASE}
+        ports:
+            - '${FORWARD_PGSQL_PORT:-5432}:5432'
+        networks:
+            - test_task
+
+    # REDIS
+    test_task_redis:
+        image: 'redis:alpine'
+        container_name: test_task_redis
+        volumes:
+            - 'test_task_redis:/data'
+        ports:
+            - '${FORWARD_REDIS_PORT:-6379}:6379'
+        command: ["redis-server", "--appendonly", "yes",  "--replica-read-only", "no"]
+        networks:
+            - test_task
+
+    # LARAVEL SCHEDULER
+    test_task_schedule:
+        image: test_task
+        container_name: test_task_schedule
+        user: www-data
+        working_dir: /var/www/
+        depends_on:
+            - test_task_fpm
+        volumes:
+            - './:/var/www'
+            - '${APP_STORAGE_PATH}:/mnt/storage'
+        command: [ "bash", "-c", "php artisan schedule:work" ]
+        networks:
+            - test_task
+        environment:
+            PHP_IDE_CONFIG: serverName=test_task_schedule
+
+    # QUEUE
+    test_task_queue:
+        image: test_task
+        container_name: test_task_queue
+        user: www-data
+        working_dir: /var/www/
+        depends_on:
+            - test_task_fpm
+            - test_task_redis
+        volumes:
+            - './:/var/www'
+            - '${APP_STORAGE_PATH}:/mnt/storage'
+        networks:
+            - test_task
+        command: [ "bash", "-c", "php artisan horizon" ]
+        environment:
+            PHP_IDE_CONFIG: serverName=test_task_queue
+
+# SHARED SETTINGS
+networks:
+    test_task:
+        name: test_task
+        driver: bridge
+volumes:
+    test_task_pgsql:
+        driver: local
+    test_task_redis:
+        driver: local

@@ -1,0 +1,27 @@
+http:
+  routers:
+    fpm-router:
+      rule: "PathPrefix(`/`)"
+      service: "fpm"
+      entryPoints:
+        - "fpm"
+
+  services:
+    fpm:
+      loadBalancer:
+        servers:
+          - url: "http://fpm:80"
+
+tcp:
+  routers:
+    pgsql-router:
+      rule: "HostSNI(`*`)"
+      service: "pgsql"
+      entryPoints:
+        - "pgsql"
+
+  services:
+    pgsql:
+      loadBalancer:
+        servers:
+          - address: "pgsql:5432"

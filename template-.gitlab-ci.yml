@@ -1,0 +1,65 @@
+stages:
+  - deploy
+  - error
+
+.branch_stay_actual:
+  stage: deploy
+  environment:
+    name: "egrn-pro-backend-prod-environment"
+  rules:
+    - if: ($CI_COMMIT_BRANCH == $BRANCH_NAME)
+      when: on_success
+  script:
+    - make check_vars --makefile=MakefilePipeline -j1
+    - make notify_start --makefile=MakefilePipeline -j1
+    - make start --makefile=MakefilePipeline -j1
+    - make insert_persisted_items --makefile=MakefilePipeline -j1
+    - make build --makefile=MakefilePipeline -j1
+    - make shift_build_versions --makefile=MakefilePipeline -j1
+    - make run_build --makefile=MakefilePipeline -j1
+    - make notify_success --makefile=MakefilePipeline -j1
+    - make clean_tmp_build --makefile=MakefilePipeline -j1
+  variables:
+    BRANCH_NAME: "dev"
+    CICD_DIR: "/var/www/html/dev.example.com"
+    CICD_PHP: "/usr/bin/php8.3"
+    CICD_COMPOSER: "/home/gitlab-runner/composer.phar"
+    GIT_STRATEGY: clone
+    FPM_CONTAINER_NAME: "egrn-pro-backend-test-fpm"
+    COMPOSE_NAME: "docker-compose-test.yml"
+
+test-stay-actual:
+  rules:
+    - if: ($CI_PIPELINE_SOURCE == "schedule")
+      when: never
+    - if: ($CI_COMMIT_BRANCH == $BRANCH_NAME)
+      when: on_success
+  extends: .branch_stay_actual
+  environment:
+    name: "egrn-pro-backend-test-environment"
+  tags:
+    - shared-runner
+    - cyberia-dev-server
+  variables:
+    BRANCH_NAME: "test"
+    CICD_DIR: "/var/www/html/egrn-pro-backend"
+    FPM_CONTAINER_NAME: "egrn-pro-backend-fpm-test"
+    COMPOSE_NAME: "docker-compose-test.yml"
+
+test-react_error:
+  stage: error
+  tags:
+    - shared-runner
+    - cyberia-dev-server
+  environment:
+    name: "egrn-pro-backend-test-environment"
+  script:
+    - sh $TELEGRAM_SCRIPT "❌ <b>FAILURE</b>"
+  rules:
+    - if: ($CI_PIPELINE_SOURCE == "schedule")
+      when: never
+    - if: ($CI_COMMIT_BRANCH != $BRANCH_NAME)
+      when: never
+    - when: on_failure
+  variables:
+    BRANCH_NAME: "test"

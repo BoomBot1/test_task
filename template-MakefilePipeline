@@ -1,0 +1,81 @@
+.ONESHELL:
+.NOTPARALLEL:
+
+# Vars check
+check_vars:
+    ifeq ($(BRANCH_NAME),)
+        $(error BRANCH_NAME var is required!)
+    endif
+    ifeq ($(CICD_DIR),)
+        $(error CICD_DIR var is required!)
+    endif
+    ifeq ($(CICD_COMPOSER),)
+        $(error CICD_COMPOSER var is required!)
+    endif
+    ifeq ($(TELEGRAM_SCRIPT),)
+        $(error TELEGRAM_SCRIPT var is required!)
+    endif
+    ifeq ($(DOTENV), )
+    	$(error DOTENV var is required)
+    endif
+
+# Helper vars
+FIXOWN = sudo chown -R www-data:www-data $(CICD_DIR);
+FIXMOD = sudo chmod -R 775 $(CICD_DIR);
+CURRENT_STAGE = "NONE"
+
+# Notify message telegram about start
+notify_start:
+	sh $(TELEGRAM_SCRIPT) "⏳ <b>START</b>";
+
+start:
+	sudo rm -R $(CICD_DIR)/builds/$(BRANCH_NAME)-tmp || true;
+	sudo cp -r $(CI_PROJECT_DIR) $(CICD_DIR)/builds/$(BRANCH_NAME)-tmp;
+
+insert_persisted_items:
+	export CURRENT_STAGE="inserting persistent items";
+	sudo cp $(DOTENV) $(CICD_DIR)/builds/$(BRANCH_NAME)-tmp/.env;
+	sudo rm -R $(CICD_DIR)/builds/$(BRANCH_NAME)-tmp/storage || true;
+	$(FIXOWN)
+	$(FIXMOD)
+
+build:
+	export CURRENT_STAGE="building new images";
+	cd $(CICD_DIR)/builds/$(BRANCH_NAME)-tmp;
+	sudo docker compose -f $(COMPOSE_NAME) build;
+	$(FIXOWN)
+	$(FIXMOD)
+
+shift_build_versions:
+	export CURRENT_STAGE="shifting builds";
+	sudo rm -R $(CICD_DIR)/builds/$(BRANCH_NAME)-prev || true;
+	sudo mv $(CICD_DIR)/builds/$(BRANCH_NAME) $(CICD_DIR)/builds/$(BRANCH_NAME)-prev || true;
+	sudo mv $(CICD_DIR)/builds/$(BRANCH_NAME)-tmp $(CICD_DIR)/builds/$(BRANCH_NAME) || true;
+	cd $(CICD_DIR)/builds/$(BRANCH_NAME);
+	sudo docker compose -f $(COMPOSE_NAME) down;
+	$(FIXOWN)
+	$(FIXMOD)
+
+run_build:
+	export CURRENT_STAGE="run new image and exec commands"
+	cd $(CICD_DIR)/builds/$(BRANCH_NAME);
+	sudo docker compose -f $(COMPOSE_NAME) up -d;
+	sudo docker container exec $(FPM_CONTAINER_NAME) ln -s /mnt/storage /var/www/storage;
+	sudo docker container exec $(FPM_CONTAINER_NAME) COMPOSER_ALLOW_SUPERUSER=1 composer install;
+	sudo docker container exec $(FPM_CONTAINER_NAME) php artisan optimize;
+	sudo docker container exec $(FPM_CONTAINER_NAME) php artisan storage:link;
+	sudo docker container exec $(FPM_CONTAINER_NAME) php artisan migrate;
+	sudo docker container exec $(FPM_CONTAINER_NAME) php artisan optimize;
+	$(FIXOWN)
+	$(FIXMOD)
+
+# Notify telegram about success
+notify_success:
+	sh $(TELEGRAM_SCRIPT) "✅ <b>COMPLETE</b>";
+
+# Remove tmp build directory from runner home
+clean_tmp_build:
+	rm -R $(CI_PROJECT_DIR);
+
+notify_error:
+	sh $(TELEGRAM_SCRIPT) "❌ <b>FAILURE</b> on stage $(CURRENT_STAGE)";

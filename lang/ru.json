@@ -1,0 +1,5 @@
+{
+    "(and :count more error)": "(и еще :count ошибка)",
+    "(and :count more errors)": "(и еще :count ошибки/ошибок)",
+    "All rights reserved.": "Все права защищены."
+}

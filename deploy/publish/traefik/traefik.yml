@@ -1,0 +1,17 @@
+api:
+  insecure: true
+
+entryPoints:
+  fpm:
+    forwardedHeaders:
+      insecure: true
+    address: ":80"
+  pgsql:
+    address: ":5432"
+
+providers:
+  file:
+    filename: "/etc/traefik/dynamic.yml"
+  docker:
+    exposedByDefault: false
+    network: "main"
